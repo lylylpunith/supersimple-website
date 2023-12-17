@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stylish Alarm Clock</title>
+  <style>
+    /* ... (same as before) ... */
+  </style>
+</head>
+<body>
+
+  <div class="clock">
+    <div id="time"></div>
+    <input type="time" id="alarmInput" required>
+    <button id="setAlarmButton" onclick="setAlarm()">Set Alarm</button>
+    <button id="audioControlButton" onclick="toggleAudio()">Play/Pause Audio</button>
+  </div>
+
+  <audio id="alarmAudio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+  <script>
+    var audio = document.getElementById('alarmAudio');
+    var audioControlButton = document.getElementById('audioControlButton');
+
+    function updateClock() {
+      // ... (same as before) ...
+    }
+
+    function setAlarm() {
+      // ... (same as before) ...
+    }
+
+    function checkAlarm(currentTime) {
+      // ... (same as before) ...
+    }
+
+    function playAlarm() {
+      audio.play();
+    }
+
+    function toggleAudio() {
+      if (audio.paused) {
+        audio.play();
+        audioControlButton.innerHTML = 'Pause Audio';
+      } else {
+        audio.pause();
+        audioControlButton.innerHTML = 'Play Audio';
+      }
+    }
+
+    function showNotification(message) {
+      // ... (same as before) ...
+    }
+
+    // Initial call to start the clock
+    updateClock();
+  </script>
+
+</body>
+</html>

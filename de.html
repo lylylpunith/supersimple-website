@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Expiry Alarm System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #medicineList {
+            margin-bottom: 20px;
+        }
+
+        #expiryAlert {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Medicine Expiry Alarm System</h1>
+
+    <div id="medicineList">
+        <label for="medicineName">Medicine Name:</label>
+        <input type="text" id="medicineName" required>
+        <label for="expiryDate">Expiry Date:</label>
+        <input type="date" id="expiryDate" required>
+        <button onclick="addMedicine()">Add Medicine</button>
+    </div>
+
+    <div id="expiryAlert"></div>
+
+    <script>
+        function addMedicine() {
+            var medicineName = document.getElementById('medicineName').value;
+            var expiryDate = document.getElementById('expiryDate').value;
+
+            // Check if the date is in the future
+            if (new Date(expiryDate) > new Date()) {
+                // Save medicine details to local storage
+                var medicines = JSON.parse(localStorage.getItem('medicines')) || [];
+                medicines.push({ name: medicineName, expiry: expiryDate });
+                localStorage.setItem('medicines', JSON.stringify(medicines));
+
+                // Clear input fields
+                document.getElementById('medicineName').value = '';
+                document.getElementById('expiryDate').value = '';
+
+                // Display medicine list
+                displayMedicineList();
+
+                // Check for upcoming expiry
+                checkExpiry();
+            } else {
+                alert('Please enter a future expiry date.');
+            }
+        }
+
+        function displayMedicineList() {
+            var medicines = JSON.parse(localStorage.getItem('medicines')) || [];
+            var medicineListDiv = document.getElementById('medicineList');
+            medicineListDiv.innerHTML = '<h3>Medicine List:</h3>';
+            
+            medicines.forEach(function (medicine) {
+                medicineListDiv.innerHTML += '<p>' + medicine.name + ' - Expiry Date: ' + medicine.expiry + '</p>';
+            });
+        }
+
+        function checkExpiry() {
+            var medicines = JSON.parse(localStorage.getItem('medicines')) || [];
+            var expiryAlertDiv = document.getElementById('expiryAlert');
+            expiryAlertDiv.innerHTML = '';
+
+            medicines.forEach(function (medicine) {
+                var daysUntilExpiry = Math.floor((new Date(medicine.expiry) - new Date()) / (1000 * 60 * 60 * 24));
+                
+                if (daysUntilExpiry <= 7) {
+                    expiryAlertDiv.innerHTML += '<p>' + medicine.name + ' will expire in ' + daysUntilExpiry + ' days!</p>';
+                }
+            });
+        }
+
+        // Display existing medicines and check for expiry on page load
+        displayMedicineList();
+        checkExpiry();
+    </script>
+
+</body>
+</html>

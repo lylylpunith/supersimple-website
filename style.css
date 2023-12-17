@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "poppins", sans-serif;
+}
+
+body {
+    background-color: white; /* You can set a background color */
+    background-image: url('m4.jpeg'); /* You can set a background image */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the background image */
+    height: 100vh; /* Make the body cover the full height of the viewport */
+}
+
+ul {
+    list-style: none;
+    display: flex;
+}
+
+.nav {
+    width: 100%;
+}
+
+.nav_main {
+    display: flex;
+    align-items: center;
+    padding: 1rem 6rem;
+}
+
+.nav1 {
+    width: 30%;
+}
+
+.nav2 {
+    width: 70%;
+}
+
+.nav2 a {
+    font-weight: 400;
+    text-align: center;
+    color: black;
+}
+
+.nav2 li {
+    padding: 0 0 0 50px;
+}
+
+/* ****************************** */
+.home {
+    width: 100%;
+}
+
+.home2 {
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden; /* Clear float */
+}
+
+home2.home1-col1 {
+    float: right;
+    margin: 10px; /* Add some margin for spacing */
+}
+
+.text {
+    margin: 10px;
+}
